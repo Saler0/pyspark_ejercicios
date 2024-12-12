@@ -33,11 +33,11 @@ employees = sc.textFile("Employees.txt")
 
 # Transformar Departments.txt en (DPT, (DEPT_NAME, DEPT_NUM, ADDRESS, CITY))
 departments_kv = departments.map(lambda line: line.split(";")) \
-                                .map(lambda x: (x[0], (x[1], int(x[2]), x[3], x[4])))
+                            .map(lambda x: (x[0], (x[1], int(x[2]), x[3], x[4])))
 
 # Transformar Employees.txt en (DPT, (EMP_ID, NAME, SALARY, CITY))
 employees_kv = employees.map(lambda line: line.split(";")) \
-                            .map(lambda x: (x[4], (x[0], x[1], int(x[2]), x[3])))
+                        .map(lambda x: (x[4], (x[0], x[1], int(x[2]), x[3])))
 # Realizar el join
 joined_rdds = employees_kv.join(departments_kv)
 
@@ -55,5 +55,5 @@ with open(output_path, 'w') as f:
         f.write(f"{i}\n")
 
 
-# 7. Detener el contexto de Spark
+# Detener el contexto de Spark
 sc.stop()
